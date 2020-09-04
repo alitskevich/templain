@@ -1,0 +1,44 @@
+<component id="Page">
+    <h5>{title}</h5>
+    <h6>{subtitle}</h6>
+    <ui:slot />
+</component>
+
+<component id="EName">
+    <span>{value|findName:@data}</span>
+</component>
+
+<component id="Line">
+    <div class="flexoid">
+        <span class="m1">{name}: </span>
+        <ui:slot />
+    </div>
+</component>
+
+<component id="Norm">
+    <span class="mx {value|inRange:@min:@max|then:green}">{value|norma:@min:@max|str.wrap:(*)}</span>
+</component>
+
+<component id="Unit">
+    <span class="mx text-small" style="align-self: flex-end;">{type}</span>
+</component>
+
+<component id="ЗАКЛЮЧЕНИЕ">
+    <Panel caption="ЗАКЛЮЧЕНИЕ:">
+        <InlineText key="resolution" onChange={onChange} value={resolution} />
+        <pre class="container">
+ВРАЧ: {doctor|fio}
+    </pre>
+    </Panel>
+
+</component>
+
+<component id="Patient">
+    <Panel caption="ПАЦИЕНТ:">
+        <Line name="Ф.И.О."><span>{data|fio}</span></Line>
+        <Line name="Пол">
+            <EName value={gender} data={:enums.gender} />
+        </Line>
+        <Line name="Возраст"><span>{birthdate|age}</span></Line>
+    </Panel>
+</component>

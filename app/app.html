@@ -1,0 +1,9 @@
+<component id="App">
+  <NavigationService ui:ref="nav" />
+  <ViewPort caption=":top.title" sidebarWidth="300">
+    <ViewPort:aside>
+      <NavGroupedList data=":top.sitemap" />
+    </ViewPort:aside>
+    <PageRouter ui:props="<- nav.route" />
+  </ViewPort>
+</component>

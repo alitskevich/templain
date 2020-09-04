@@ -1,0 +1,162 @@
+<component id="ПЕЧЕНЬ">
+  <Panel caption="ПЕЧЕНЬ:">
+    <Line name="Размеры">
+      <InlineNumber key="size" onChange={onChange} value={size} />
+      <Unit type="мм" />
+      <Norm value={size} min="3" max="6" />
+    </Line>
+    <Line name="КВР правой доли">
+      <InlineNumber key="kvr_prav" onChange={onChange} value={kvr_prav} />
+      <Unit type="мм" />
+      <Norm value={kvr_prav} min="2" max="6" />
+    </Line>
+    <Line name="ПЗР правой доли">
+      <InlineNumber key="pzr_prav" onChange={onChange} value={pzr_prav} />
+      <Unit type="мм" />
+      <Norm value={pzr_prav} min="3" max="7" />
+    </Line>
+    <Line name="ТЛД">
+      <InlineNumber key="tld" onChange={onChange} value={tld} />
+      <Unit type="мм" />
+      <Norm value={tld} min="3" max="6" />
+    </Line>
+    <Line name="Контуры">
+      <InlineTrigger key="contours" onChange={onChange} value={contours}
+                     data=":enums.peqen_contours" />
+    </Line>
+    <Line name="Эхоструктура">
+      <InlineTrigger key="echo_structure" onChange={onChange} value={echo_structure}
+                     data=":enums.peqen_echo_structure" />
+    </Line>
+    <Line name="Эхогенность паренхимы">
+      <InlineTrigger key="echogennost_parenxim" onChange={onChange} value={echogennost_parenxim}
+                     data=":enums.abnormal" />
+    </Line>
+    <Line name="Проницаемость ультразвука">
+      <InlineTrigger key="pronicalnost_ultrazvuka" onChange={onChange} value={pronicalnost_ultrazvuka}
+                     data=":enums.abnormal" />
+    </Line>
+    <Line name="Очаговые образования">
+      <InlineTrigger key="oqagovye_utvarenni" onChange={onChange} value={oqagovye_utvarenni}
+                     data=":enums.exists" />
+      <InlineInput key="oqagovye_utvarenni_notes" onChange={onChange} value={oqagovye_utvarenni_notes}
+                   ui:if={oqagovye_utvarenni|equals:1} />
+    </Line>
+    <Line name="Воротная вена">
+      <InlineNumber key="vorot_vena" onChange={onChange} value={vorot_vena} />
+      <Unit type="мм" />
+      <Norm value={vorot_vena} min="3" max="6" />
+
+      <span class="mx">V ps =</span>
+      <InlineNumber key="vorot_vena_v_ps" onChange={onChange} value={vorot_vena_v_ps} />
+      <Unit type="cm/cek" />
+
+      <span class="mx">V ed =</span>
+      <InlineNumber key="vorot_vena_v_ed" onChange={onChange} value={vorot_vena_v_ed} />
+      <Unit type="cm/cek" />
+    </Line>
+    <Line name="Печёночные вены">
+      <InlineChoice key="peqen_veny" onChange={onChange} value={peqen_veny}
+                    data=":enums.abnormal" />
+    </Line>
+    <Line name="Сосудистый рисунок">
+      <InlineTrigger key="sosud_rysunok" onChange={onChange} value={sosud_rysunok}
+                     data=":enums.abnormal" />
+      <InlineInputSuggestable key="sosud_rysunok_notes"
+                              onChange={onChange}
+                              value={sosud_rysunok_notes}
+                              suggestions=":enums.peqen_sosud_rysunok_notes" />
+    </Line>
+  </Panel>
+</component>
+
+<component id="ЖЕЛЧНЫЙ-ПУЗЫРЬ">
+  <Panel caption="ЖЕЛЧНЫЙ ПУЗЫРЬ:">
+    <Line name="Размеры">
+      <InlineNumber key="zhelqpuzyr_size" onChange={onChange} value={zhelqpuzyr_size} />
+      <Unit type="мм" />
+      <Norm value={zhelqpuzyr_size} min="3" max="6" />
+    </Line>
+    <Line name="стенки">
+      <InlineNumber key="zhelqpuzyr_stenki" onChange={onChange} value={zhelqpuzyr_stenki} />
+      <Unit type="мм" />
+      <Norm value={zhelqpuzyr_stenki} min="3" max="6" />
+    </Line>
+    <Line name="образования в желчном пузыре">
+      <InlineTrigger key="zhelqpuzyr_oqagovye_utvarenni" onChange={onChange} value={zhelqpuzyr_oqagovye_utvarenni}
+                     data=":enums.exists" />
+      <InlineInput key="zhelqpuzyr_oqagovye_utvarenni_notes"
+                   onChange={onChange}
+                   value={zhelqpuzyr_oqagovye_utvarenni_notes}
+                   ui:if={zhelqpuzyr_oqagovye_utvarenni|equals:1} />
+    </Line>
+  </Panel>
+</component>
+
+<component id="ЖЕЛЧНЫЕ-ПРОТОКИ">
+  <Panel caption="ЖЕЛЧНЫЕ ПРОТОКИ:">
+    <Line name="холедох">
+      <InlineNumber key="zhelpratoki_xoledox_size" onChange={onChange} value={zhelpratoki_xoledox_size} />
+      <Unit type="мм" />
+      <Norm value={zhelpratoki_xoledox_size} min="3" max="6" />
+
+    </Line>
+    <Line name="стенки">
+      <InlineTrigger key="zhelpratoki_stenki" onChange={onChange} value={zhelpratoki_stenki}
+                     data=":enums.abnormal" />
+    </Line>
+    <Line name="пузырный">
+      <InlineTrigger key="zhelpratoki_puzyrnyj" onChange={onChange} value={zhelpratoki_puzyrnyj}
+                     data=":enums.abnormal" />
+    </Line>
+    <Line name="внутрипеченочные протоки">
+      <InlineTrigger key="zhelpratoki_unutr" onChange={onChange} value={zhelpratoki_unutr}
+                     data=":enums.extended" />
+    </Line>
+  </Panel>
+</component>
+
+<component id="PeqenPagePreview">
+  <div class="right">Дата {timestamp|orNow|date} г</div>
+  <Patient ui:props={data.patient} data={data.patient} />
+  <ПЕЧЕНЬ onChange={onChange} ui:props={data} />
+  <ЖЕЛЧНЫЙ-ПУЗЫРЬ onChange={onChange} ui:props={data} />
+  <ЖЕЛЧНЫЕ-ПРОТОКИ onChange={onChange} ui:props={data} />
+  <ЗАКЛЮЧЕНИЕ onChange={onChange} ui:props={data} />
+</component>
+
+<component id="PeqenPageInput">
+
+  <Panel caption="ПЕЧЕНЬ">
+    <TextField caption="Размеры" data-key="size" onChange={onChange} value={data.size} />
+  </Panel>
+
+  <Panel caption="ЖЕЛЧНЫЙ ПУЗЫРЬ">
+    <TextField caption="Размеры" data-key="size" onChange={onChange} value={data.size} />
+  </Panel>
+
+  <Panel caption="ЖЕЛЧНЫЕ ПРОТОКИ">
+    <NumberField caption="холедох" data-key="xoledox" onChange={onChange} value={data.size} />
+  </Panel>
+
+  <Panel caption="ЗАКЛЮЧЕНИЕ">
+    <TextareaField data-key="resolution" onChange={onChange}
+                   value={data.resolution} />
+  </Panel>
+</component>
+
+<component id="PeqenPage">
+  <Page title=":pages.peqen.title" subtitle=":pages.peqen.subtitle">
+    <Store ui:ref="store" initials=":pages.peqen.initials" />
+    <div class="non-printable">
+      <SwitchField onChange="->editable|obj.dot:value" caption="Редактирование"
+                   value={editable|bool} />
+    </div>
+    <PeqenPageInput ui:if={editable} onChange="->store.change" data="<- store.data" />
+    <PeqenPagePreview ui:if={editable|not} onChange="->store.change" data="<- store.data" />
+    <div class="non-printable">
+      <Button action={_|getDoPrint} caption="Печать..." />
+    </div>
+  </Page>
+
+</component>

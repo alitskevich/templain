@@ -1,0 +1,30 @@
+<component id="MainPage">
+    <Navbar caption="Gallery" />
+    <Panel caption="Icons">
+        <LoadingIndicator />
+        Using Font
+        <Icon type="cog" />
+    </Panel>
+    <Panel caption="Buttons">
+        <Button caption="Default" trackId="action1" />
+        <Button
+                icon="cog"
+                caption="Large primary with icon"
+                primary
+                large
+                class="m-2" />
+        <Button icon="123" caption="Link" link />
+    </Panel>
+    <Panel caption="Panel" hint="with hint"> here... </Panel>
+</component>
+
+<component id="ArrowsPage">
+    <Navbar caption="Arrows" />
+    <Panel caption="Subscribe and Action">
+        <Tabs value="<- store.tab" items=":top.sitemap" action="-> store.select" />
+        <Button
+                caption="<- store.tab|or:none|str.capitalize"
+                data-id="other"
+                action="-> store.select" />
+    </Panel>
+</component>
