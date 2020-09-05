@@ -15,7 +15,7 @@ const types = [
 ]
 
 launch({
-  template: '<App />',
+  template: '<App2 />',
   types,
   resources,
   pipes

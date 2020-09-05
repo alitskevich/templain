@@ -1,0 +1,97 @@
+<component id="InlineInput">
+    <label class="{editing|then:hidden} clickable" data-editing="true" click="->">{value|or:___}</label>
+    <input type="text"
+           autofocus
+           ui:if={editing}
+           style="min-width:250px;"
+           value={data|dot:@field}
+           data-editing="false"
+           data-id={field}
+           change="->store.change"
+           blur="->" />
+</component>
+
+<component id="InlineInputSuggestable">
+    <label class="{editing|then:hidden} clickable" data-editing="true"
+           click="->">{data|dot:@field|or:@defaultText|or:___}</label>
+    <span class="dropdown" ui:if={editing}>
+        <a class="dropdown-toggle">
+            <input type="text"
+                   autofocus
+                   style="min-width:250px;"
+                   value={data|dot:@field}
+                   data-editing="false"
+                   data-id={field}
+                   change="->store.change"
+                   blur="->" />
+        </a>
+
+        <!-- menu component -->
+        <InlineMenu items={suggestions} field={field} value={data|dot:@field} onChange="->store.change"
+                    style="display: block" />
+    </span>
+</component>
+
+<component id="InlineNumber">
+    <label class="{editing|then:hidden} clickable" data-editing="true" click="->">{data|dot:@field|or:______}</label>
+    <input type="number"
+           autofocus
+           ui:if={editing}
+           style="width:50px;"
+           value={data|dot:@field}
+           data-editing="false"
+           data-id={field}
+           change="->store.change"
+           blur="->" />
+    <span class="mx text-small" style="align-self: flex-end;" ui:if={unit}>{unit}</span>
+</component>
+
+<component id="InlineText">
+    <div class="{editing|then:hidden} clickable" data-editing="true" click="->">{data|dot:@field|or:___}</div>
+    <textarea
+              autofocus
+              style="width:100%;"
+              ui:if={editing}
+              value={data|dot:@field}
+              data-editing="false"
+              data-id={field}
+              change="->store.change"
+              blur="->" />
+    </component>
+
+<component id="InlineChoice">
+    <span class="dropdown">
+        <a href="#" class="clickable dropdown-toggle">
+            {data|dot:@field|findName:@items}<i class="icon icon-caret"></i>
+        </a>
+        <InlineMenu items={items} field={field} value={data|dot:@field} onChange="->store.change"/>
+    </span>
+</component>
+
+<component id="InlineMenu">
+<ul class="menu" style="right:0;left:auto;{style}">
+    <li ui:for="item of items"
+        class="menu-item {value|equals:@item.id|then:active}"
+        data-id={field}
+        data-value={item.id}
+        data-name={item.name}
+        click={onChange}>
+        <a>{item.name|or:@item.id}</a>
+    </li>
+</ul>
+</component>
+
+<component id="InlineTrigger">
+    <span data-id={field}
+          data-value={data|dot:@field|cycledInc:@items.length}
+          click="->store.change">
+        <a class="clickable {data|dot:@field|or:0|equals:0|then:green}">
+            {data|dot:@field|or:0|findName:@items}
+        </a>
+    </span>
+</component>
+
+<component id="InlineSize">
+    <InlineNumber field={field} data={data} unit={unit|or:мм} />
+    <Norm value={data|dot:@field} lo={lo} hi={hi} ui:if={lo|or:@hi} />
+</component>

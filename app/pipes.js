@@ -6,11 +6,12 @@ const LEVELS = [
 ]
 export default {
   ...pipes,
-  fio: (p) => p.name || p.fullName,
+  fio: (p = {}) => p.name || p.fullName,
   bool: (x) => !!x,
   now: () => Date.now(),
   orNow: (d = Date.now()) => d,
   date: (d) => Date.format(d, 'dd mmmm yyyy'),
+  dot: (x, k) => x ? x[k] : null,
   inc: (x = 0) => x + 1,
   cycledInc: (x = 0, max = 1, min = 0) => x >= max - 1 ? min : x + 1,
   inRange: (v, min = 0, max = 1) => (v >= min && v <= max ? 1 : 0),

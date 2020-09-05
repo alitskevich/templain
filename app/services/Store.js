@@ -20,12 +20,11 @@ export class Store {
     }
   }
 
-  onChange ({ value, key }, { data }) {
-    console.log('onChange', value, key)
+  onChange ({ value, id }, { data }) {
     return {
       data: {
         ...data,
-        [key]: value
+        [id]: value
       }
     }
   }

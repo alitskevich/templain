@@ -12,9 +12,9 @@ export default {
       },
       {
         id: 'uzi',
-        name: 'УЗИ Печень',
+        name: 'УЗИ',
         items: [
-          { id: 'consult', name: 'Консультация', icon2: 'home' },
+          { id: 'consult', name: 'УЗИ Консультация', icon2: 'home' },
           { id: 'peqen', name: 'УЗИ Печень', icon: 'work' }
         ]
       }
@@ -61,7 +61,8 @@ export default {
       { id: 0, name: 'ровные' },
       { id: 1, name: 'неровные' }
     ],
-    peqen_sosud_rysunok_notes: [
+    peqen_sosud_rysunok: [
+      { id: '', name: 'норма' },
       { id: 'ветви не прослеживаются' },
       { id: 'ветви прослеживаются до периферии' }
     ],

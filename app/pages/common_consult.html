@@ -1,13 +1,13 @@
 <component id="ConsultPagePreview">
   <div class="right">Дата {timestamp|orNow|date} г</div>
   <Patient ui:props={data.patient} data={data.patient} />
-  <ЗАКЛЮЧЕНИЕ onChange={onChange} ui:props={data} />
+  <ЗАКЛЮЧЕНИЕ data={data} />
 </component>
 
 <component id="ConsultPage">
   <Page title=":pages.consult.title" subtitle=":pages.consult.subtitle">
     <Store ui:ref="store" initials=":pages.consult.initials" />
-    <ConsultPagePreview ui:if={editable|not} onChange="->store.change" data="<- store.data" />
+    <ConsultPagePreview ui:if={editable|not} data="<- store.data" />
     <div class="non-printable">
       <Button action={_|getDoPrint} caption="Печать..." />
     </div>

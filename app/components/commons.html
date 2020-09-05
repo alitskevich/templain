@@ -1,7 +1,10 @@
 <component id="Page">
-    <h5>{title}</h5>
-    <h6>{subtitle}</h6>
-    <ui:slot />
+    <div class="container">
+        <h5>{title}</h5>
+        <h6>{subtitle}</h6>
+        <ui:slot />
+    </div>
+
 </component>
 
 <component id="EName">
@@ -16,7 +19,7 @@
 </component>
 
 <component id="Norm">
-    <span class="mx {value|inRange:@min:@max|then:green}">{value|norma:@min:@max|str.wrap:(*)}</span>
+    <span class="mx {value|inRange:@lo:@hi|then:green}">{value|norma:@lo:@hi|str.wrap:(*)}</span>
 </component>
 
 <component id="Unit">
@@ -25,9 +28,9 @@
 
 <component id="ЗАКЛЮЧЕНИЕ">
     <Panel caption="ЗАКЛЮЧЕНИЕ:">
-        <InlineText key="resolution" onChange={onChange} value={resolution} />
-        <pre class="container">
-ВРАЧ: {doctor|fio}
+        <InlineText field="resolution" data={data} />
+        <pre class="">
+        ВРАЧ: {data.doctor|fio}
     </pre>
     </Panel>
 
