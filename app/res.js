@@ -15,7 +15,9 @@ export default {
         name: 'УЗИ',
         items: [
           { id: 'consult', name: 'УЗИ Консультация', icon2: 'home' },
-          { id: 'peqen', name: 'УЗИ Печень', icon: 'work' }
+          { id: 'peqen', name: 'УЗИ Печень', icon: 'work' },
+          { id: 'brushnajaPolost', name: 'УЗИ брюшной полости', icon: 'work' },
+          { id: 'serdce', name: 'УЗИ Сердце', icon: 'work' }
         ]
       }
     ]
@@ -29,6 +31,24 @@ export default {
       },
       title: 'УЛЬТРАЗВУКОВОЕ ИССЛЕДОВАНИЕ ПЕЧЕНИ И ЖЕЛЧНОГО ПУЗЫРЯ',
       subtitle: 'С ЦВЕТОВЫМ И ЭНЕРГЕТИЧЕСКИМ ДОППЛЕРОВСКИМ КАРТИРОВАНИЕМ'
+    },
+    serdce: {
+      initials: {
+        size: 5,
+        resolution: 'проктически здоров.',
+        echo_structure: 0
+      },
+      title: 'УЛЬТРАЗВУКОВОЕ ИССЛЕДОВАНИЕ СЕРДЦА',
+      subtitle: ''
+    },
+    brushnajaPolost: {
+      initials: {
+        size: 5,
+        resolution: 'проктически здоров.',
+        echo_structure: 0
+      },
+      title: 'УЛЬТРАЗВУКОВОЕ ИССЛЕДОВАНИЕ БРЮШНОЙ ПОЛОСТИ',
+      subtitle: ''
     },
     consult: {
       initials: {

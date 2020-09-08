@@ -1,0 +1,77 @@
+<component id="BrushnajaPolost">
+  <Panel caption="BrushnajaPolost:">
+    <Line name="Размеры">
+      <InlineSize field="size" data={data} lo="3" hi="6" />
+    </Line>
+    <Line name="Правая доля">
+      <span class="mx">КВР</span>
+      <InlineSize field="kvr_prav" data={data} lo="2" hi="6" />
+      <span class="mx">ПЗР</span>
+      <InlineSize field="pzr_prav" data={data} lo="3" hi="7" />
+      <span class="mx">ТЛД</span>
+      <InlineSize field="tld" data={data} lo="3" hi="6" />
+    </Line>
+    <Line name="Контуры">
+      <InlineTrigger field="contours" data={data} items=":enums.BrushnajaPolost_contours" />
+    </Line>
+    <Line name="Эхоструктура">
+      <InlineTrigger field="echo_structure" data={data} items=":enums.BrushnajaPolost_echo_structure" />
+    </Line>
+    <Line name="Эхогенность паренхимы">
+      <InlineTrigger field="echogennost_parenxim" data={data} items=":enums.abnormal" />
+    </Line>
+    <Line name="Проницаемость ультразвука">
+      <InlineTrigger field="pronicalnost_ultrazvuka" data={data} items=":enums.abnormal" />
+    </Line>
+    <Line name="Очаговые образования">
+      <InlineTrigger field="oqagovye_utvarenni" data={data} items=":enums.exists" />
+      <InlineInput field="oqagovye_utvarenni_notes" data={data} ui:if={data.oqagovye_utvarenni|equals:1} />
+    </Line>
+    <Line name="Воротная вена">
+      <InlineSize field="vorot_vena" data={data} lo="3" hi="6" />
+
+      <span class="mx">V ps =</span>
+      <InlineNumber field="vorot_vena_v_ps" data={data} unit="см/сек" />
+
+      <span class="mx">V ed =</span>
+      <InlineNumber field="vorot_vena_v_ed" data={data} unit="см/сек" />
+    </Line>
+    <Line name="Печёночные вены">
+      <InlineChoice field="BrushnajaPolost_veny" data={data} items=":enums.abnormal" />
+    </Line>
+    <Line name="Сосудистый рисунок">
+      <InlineInputSuggestable field="sosud_rysunok"
+                              data={data}
+                              defaultText="нормa"
+                              suggestions=":enums.BrushnajaPolost_sosud_rysunok" />
+    </Line>
+  </Panel>
+</component>
+
+<component id="BrushnajaPolostPagePreview">
+  <div class="right">Дата {timestamp|orNow|date} г</div>
+  <Patient ui:props={data.patient} data={data.patient} />
+  <BrushnajaPolost data={data} />
+
+  <ЗАКЛЮЧЕНИЕ data={data} />
+</component>
+
+<component id="BrushnajaPolostPageInput">
+  <Panel caption="ПЕЧЕНЬ">
+    <TextField caption="Размеры" data-field="size" data={data.size} />
+  </Panel>
+</component>
+
+<component id="BrushnajaPolostPage">
+  <Page title=":pages.brushnajaPolost.title" subtitle=":pages.brushnajaPolost.subtitle">
+    <Store ui:ref="store" initials=":pages.brushnajaPolost.initials" />
+    <div class="non-printable">
+      <SwitchField onChange="->editable|obj.dot:value" caption="Редактирование" value={data|bool} />
+    </div>
+    <BrushnajaPolostPageInput ui:if={editable} data="<- store.data" />
+    <BrushnajaPolostPagePreview ui:if={editable|not} data="<- store.data" />
+    <div class="non-printable">
+      <Button action={_|getDoPrint} caption="Печать..." />
+    </div>
+  </Page>
+</component>
